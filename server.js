@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 
 const EmployeeRoute = require('./routes/employee')
+const AuthRoute = require('./routes/auth')
 
 
 mongoose.connect('mongodb://127.0.0.1:27017/db', {useNewUrlParser: true, useUnifiedTopology: true})
@@ -22,6 +23,7 @@ const app = express()
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
+app.use('/uploads', express.static('uploads'))
 
 const PORT = process.env.PORT || 3000
 
@@ -30,6 +32,7 @@ app.listen(PORT, () => {
 })
 
 app.use('/api/employee', EmployeeRoute)
+app.use('/api', AuthRoute)
 
 
 

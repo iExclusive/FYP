@@ -16,9 +16,12 @@ const employeeSchema = new Schema({
     },
     age: {
         type: Number
+    },
+    avatar: {
+        type: String
     }
 
-}, {timestampts: true})
+}, {timestamps: true})
 
 const Employee = mongoose.model('Employee', employeeSchema)
 module.exports = Employee
